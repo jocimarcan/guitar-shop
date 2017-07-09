@@ -18,7 +18,7 @@ block content
 								label
 									input(type="radio" name="brand" value=`${brand.label}` checked=`${brand.label}`==`${data.brand}`)
 									span= brand.label
-					input(type="hidden" name="page" value='1')
+					input(type="hidden" name="page" value="1")
 					button.btn.btn-block.btn-primary.btn-sm(type="submit") Apply
 			.col-md-9
 				if data.guitars.length
@@ -29,7 +29,30 @@ block content
 									img.product-img(src=`${guitar.thumbnail.secure_url}`, alt=`${guitar.slug}`)
 									.caption
 										p.text-muted= guitar.brand
-										h3: a(href=`/guitars/${guitar.slug}`)= guitar.title
+										a(href=`/guitars/${guitar.slug}`): h3= guitar.title
+					div.text-center
+						nav
+							- var n = 1
+							- var pages = data.pages.total
+							ul.pagination
+								if data.pages.previous
+									li
+										if !data.brand
+											a(href=`/guitars?page=${data.pages.previous}`) &laquo;
+										else
+											a(href=`/guitars?brand=${data.brand}&page=${data.pages.previous}`) &laquo;
+								while n <= pages
+									li
+										if !data.brand
+											a(href=`/guitars?page=${n}`)= n++
+										else
+											a(href=`/guitars?brand=${data.brand}&page=${n}`)= n++
+								if (data.pages.next)
+									li
+										if !data.brand
+											a(href=`/guitars?page=${data.pages.next}`) &raquo;
+										else
+											a(href=`/guitars?brand=${data.brand}&page=${data.pages.next}`) &raquo;
 				else
 					h2.text-center.text-muted We don't have any guitar :(
 
