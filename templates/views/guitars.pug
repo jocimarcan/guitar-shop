@@ -1,0 +1,19 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Our Guitars
+
+block content
+	.container
+		if data.guitars.length
+			.row
+				each guitar in data.guitars
+					.col-sm-6.col-md-4
+						.thumbnail
+							img.product-img(src=`${guitar.thumbnail.secure_url}`, alt=`${guitar.slug}`)
+							.caption
+								p.text-muted #{guitar.brand}
+								h3: a(href=`/guitars/${guitar.slug}`) #{guitar.title}
+		else
+			h2.text-center.text-muted We don't have any guitar :(
