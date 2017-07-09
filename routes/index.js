@@ -41,9 +41,9 @@ exports = module.exports = function (app) {
 	app.get('/guitars', routes.views.guitars);
 	app.all('/signout', routes.views.signout);
 	app.all('/contact', routes.views.contact);
-	app.all('/signup', routes.views.signup);
-	app.all('/login', routes.views.login);
-	app.all('/restore', routes.views.restore);
+	app.all('/signup', middleware.logged, routes.views.signup);
+	app.all('/login', middleware.logged, routes.views.login);
+	app.all('/restore', middleware.logged, routes.views.restore);
 	app.all('/change-password', routes.views.change);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
