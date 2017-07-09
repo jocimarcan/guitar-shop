@@ -43,6 +43,8 @@ exports = module.exports = function (app) {
 	app.all('/contact', routes.views.contact);
 	app.all('/signup', routes.views.signup);
 	app.all('/login', routes.views.login);
+	app.all('/restore', routes.views.restore);
+	app.all('/change-password', routes.views.change);
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
