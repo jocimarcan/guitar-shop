@@ -1,0 +1,23 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Signup
+block content
+	.container
+		.row: .col-md-4
+			form(method='post')
+				input(type='hidden', name='action', value='signup')
+				.form-group
+					label(for='first') First name
+					input.form-control#first(type='text' name='first' required autocomplete='off')
+				.form-group
+					label(for='last') Last name
+					input.form-control#last(type='text' name='last' required autocomplete='off')
+				.form-group
+					label(for='email') Email
+					input.form-control#email(type='text' name='email' required autocomplete='off')
+				.form-group
+					label(for='password') Password
+					input.form-control#password(type='password' name='password' required autocomplete='off')
+				button(type='submit').btn.btn-primary Sign in
