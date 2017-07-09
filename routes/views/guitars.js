@@ -6,9 +6,24 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals
 
 	locals.section = 'guitars'
+	locals.brands = Guitar.fields.brand.ops
 	locals.data = {
-		guitars: []
+		guitars: [],
+		brand: []
 	}
+
+	view.on('get', { page: '1' }, function(next) {
+		if (req.query.brand) {
+			q = Guitar.model.find({ brand: req.query.brand })
+			q.exec(function(err, guitars) {
+				locals.data.guitars = guitars
+				locals.data.brand = req.query.brand
+				next(err)
+			})
+		} else {
+			res.redirect('/guitars')
+		}
+	})
 
 	view.on('init', function(next) {
 		var q = Guitar.model.find()

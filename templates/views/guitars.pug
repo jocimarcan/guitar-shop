@@ -6,14 +6,38 @@ block intro
 
 block content
 	.container
-		if data.guitars.length
-			.row
-				each guitar in data.guitars
-					.col-sm-6.col-md-4
-						.thumbnail
-							img.product-img(src=`${guitar.thumbnail.secure_url}`, alt=`${guitar.slug}`)
-							.caption
-								p.text-muted #{guitar.brand}
-								h3: a(href=`/guitars/${guitar.slug}`) #{guitar.title}
-		else
-			h2.text-center.text-muted We don't have any guitar :(
+		.row
+			.col-md-3.col-sm-12
+				form.filter(name="filter")
+					h4 Filter
+						a.clear.pull-right(href="#"): small &times; Clear filter
+					.form-group
+						label Show items by brand
+						each brand in brands
+							.radio
+								label
+									input(type="radio" name="brand" value=`${brand.label}` checked=`${brand.label}`==`${data.brand}`)
+									span= brand.label
+					input(type="hidden" name="page" value='1')
+					button.btn.btn-block.btn-primary.btn-sm(type="submit") Apply
+			.col-md-9
+				if data.guitars.length
+					.row
+						each guitar in data.guitars
+							.col-sm-4.col-md-4
+								.thumbnail
+									img.product-img(src=`${guitar.thumbnail.secure_url}`, alt=`${guitar.slug}`)
+									.caption
+										p.text-muted= guitar.brand
+										h3: a(href=`/guitars/${guitar.slug}`)= guitar.title
+				else
+					h2.text-center.text-muted We don't have any guitar :(
+
+block js
+	script(type='text/javascript').
+		$('.clear').click(function(e) {
+			$('input:radio').removeAttr('checked');
+			$('.filter').submit();
+			return false;
+		})
+		console.log('Hola mundo')
