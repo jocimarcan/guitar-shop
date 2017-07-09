@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
+var Email = require('keystone-email');
 
 exports = module.exports = function (req, res) {
 
@@ -15,7 +16,6 @@ exports = module.exports = function (req, res) {
 
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function (next) {
-
 		var newEnquiry = new Enquiry.model();
 		var updater = newEnquiry.getUpdateHandler(req);
 
@@ -31,6 +31,25 @@ exports = module.exports = function (req, res) {
 			}
 			next();
 		});
+
+		new Email('templates/emails/enquiry-notification.pug', { transport: 'mailgun' })
+			.send({ name: locals.formData['name.full'], message: locals.formData.message},{
+				apiKey: process.env.MAILGUN_API_KEY,
+				domain: process.env.MAILGUN_DOMAIN,
+				to: process.env.RECIPIENT,
+				from: {
+					name: 'Guitar Market',
+					email: 'contact@guitarmarket.com'
+				},
+				subject: 'We have received your enquiry'
+			}, function(err, result) {
+				if (err) {
+					console.error('🤕 Mailgun test failed with error:\n', err);
+				} else {
+					console.log('📬 Successfully sent Mailgun test with result:\n', result);
+				}
+			})
+
 	});
 
 	view.render('contact');
