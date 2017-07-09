@@ -54,14 +54,12 @@ html
 					.collapse.navbar-collapse
 						ul.nav.navbar-nav.navbar-left
 							each link in navLinks
-								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
+								li(class=(section == link.key ? 'active' : null) style=(user && link.helper ? 'display:none' : '')): a(href=link.href)= link.label
 						ul.nav.navbar-nav.navbar-right
 							if user
 								if user.canAccessKeystone
 									li: a(href='/keystone') Open Keystone
-								li: a(href='/keystone/signout') Sign Out
-							else
-								li: a(href='/keystone/signin') Sign In
+								li: a(href='/signout') Sign Out
 
 		//- BODY
 		#body
