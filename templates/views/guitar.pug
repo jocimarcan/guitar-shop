@@ -1,0 +1,23 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1= data.guitar.title
+block content
+	.container
+		a(href="/guitars") &larr; Go back
+		.row
+			.col-sm-12.col-md-8
+				if data.guitar.image
+					img.img-responsive(src=`${data.guitar.image.secure_url}`)
+			.col-sm-12.col-md-4
+				ul.list-group
+					li.list-group-item #[strong Price: ] #[span #{data.guitar.price}]
+					li.list-group-item
+						strong Quantity:
+						if data.guitar.qty
+							span= data.guitar.qty
+						else
+							span Out of stock
+					li.list-group-item!= data.guitar.description
+				a.btn.btn-block.btn-success(href="/contact") Ask for this product
