@@ -16,6 +16,7 @@ html
 		//- Customise the stylesheet for your site by editing /public/styles/site.less
 		//- All .less files will be automatically compiled and minified in production.
 		link(href="/styles/site.min.css", rel="stylesheet")
+		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet")
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
@@ -35,7 +36,7 @@ html
 		block head
 
 	//- HTML BODY
-	body
+	body: .wrapper
 
 		//- HEADER
 		#header
@@ -99,10 +100,14 @@ html
 
 		//- FOOTER
 		if section!= 'home'
-			.container: #footer
+			#footer: .container
 
 				//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-				p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
+				p &copy; Guitar Shop 2017
+					span.pull-right Follow us on 
+						a: span.fa.fa-facebook
+						a: span.fa.fa-twitter
+						a: span.fa.fa-instagram
 
 
 		//- JAVASCRIPT

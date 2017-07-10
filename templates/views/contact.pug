@@ -1,13 +1,10 @@
 extends ../layouts/default
 
-block intro
-	.container
-		h1 Contact Us
-		
 block content
 	.container
 		if enquirySubmitted
-			h3 Thanks for getting in touch.
+			.row: .col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+				h3 Thanks for getting in touch.
 		else
 			if user
 				- var fullname = user.name.first + ' ' + user.name.last
@@ -15,7 +12,8 @@ block content
 			else
 				- var fullname = ''
 				- var email = ''
-			.row: .col-sm-8.col-md-6
+			.row: .col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+				h1 Contact Us
 				form(method='post')
 					input(type='hidden', name='action', value='contact')
 					.form-group(class=validationErrors.name ? 'has-error' : null)
@@ -37,4 +35,4 @@ block content
 						label Message
 						textarea(name='message', required, placeholder='Leave us a message...' rows=4).form-control= formData.message
 					.form-actions
-						button(type='submit').btn.btn-primary Send
+						button(type='submit').btn.btn-primary.btn Send
