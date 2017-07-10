@@ -25,6 +25,10 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+	'wysiwyg menubar': true,
+	'wysiwyg additional plugins': 'hr',
+	'wysiwyg additional plugins': 'media',
+	'wysiwyg additional buttons': 'media'
 });
 
 // Load your project's Models
