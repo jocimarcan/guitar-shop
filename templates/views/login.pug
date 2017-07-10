@@ -1,21 +1,19 @@
 extends ../layouts/default
 
-block intro
-	.container
-		h1 Login
-
 block content
-	.container
-		.row: .col-md-4
-			form(method='post')
-				input(type='hidden', name='action', value='login')
-				.form-group
-					label(for='email') Email
-					input.form-control#email(type='email' name='email' required autocomplete='off')
-				.form-group
-					label(for='password') Password
-					input.form-control#password(type='password' name='password' required autocomplete='off')
-					a.pull-right(href="/restore"): small Forgot Password?
-				.form-group
-					button(type='submit' style="display:block").btn.btn-primary Log in
-					a.pull-right(href="/signup"): small Create an account
+	.login-wrap
+		.container: .row: .col-md-4.col-md-offset-4.login-box
+				h3.text-center Log in to Guitar Shop
+				form(method='post')
+					input(type='hidden', name='action', value='login')
+					.form-group
+						label(for='email') Email
+						input.form-control#email(type='email' name='email' required autocomplete='off')
+					.form-group
+						label(for='password') Password
+						input.form-control#password(type='password' name='password' required autocomplete='off')
+						a.pull-right(href="/restore"): small Forgot Password?
+					.form-group
+						button(type='submit' style="margin-right:10px").btn.btn-primary Log in
+						small or 
+						a(href="/signup"): small Create an account

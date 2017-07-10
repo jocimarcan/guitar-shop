@@ -52,10 +52,9 @@ html
 							span.icon-bar
 						a.navbar-brand(href='/') Guitar Shop
 					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-left
+						ul.nav.navbar-nav.navbar-right
 							each link in navLinks
 								li(class=(section == link.key ? 'active' : null) style=(user && link.helper ? 'display:none' : '')): a(href=link.href)= link.label
-						ul.nav.navbar-nav.navbar-right
 							if user
 								if user.canAccessKeystone
 									li: a(href='/keystone') Open Keystone
