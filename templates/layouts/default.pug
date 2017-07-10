@@ -11,6 +11,7 @@ html
 
 		title= title || 'Guitar Shop'
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+		link(rel="icon" href="/favicon.ico" type="image/x-icon")
 
 		//- Customise the stylesheet for your site by editing /public/styles/site.less
 		//- All .less files will be automatically compiled and minified in production.
@@ -37,28 +38,46 @@ html
 	body
 
 		//- HEADER
-		#header: .container
+		#header
 
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
 			//- ... or completely change this header to suit your design.
-
-			div(role="navigation").navbar.navbar-default
-				.container-fluid
-					.navbar-header
-						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-							span.sr-only Toggle navigation
-							span.icon-bar
-							span.icon-bar
-							span.icon-bar
-						a.navbar-brand(href='/') Guitar Shop
-					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-right
-							each link in navLinks
-								li(class=(section == link.key ? 'active' : null) style=(user && link.helper ? 'display:none' : '')): a(href=link.href)= link.label
-							if user
-								if user.canAccessKeystone
-									li: a(href='/keystone') Open Keystone
-								li: a(href='/signout') Sign Out
+			if section == 'home'
+				div(role="navigation").navbar.navbar-default.navbar-home
+					.container
+						.navbar-header
+							button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+								span.sr-only Toggle navigation
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+							a.navbar-brand(href='/') Guitar Shop
+						.collapse.navbar-collapse
+							ul.nav.navbar-nav.navbar-right
+								each link in navLinks
+									li(style=(user && link.helper ? 'display:none' : '')): a(href=link.href)= link.label
+								if user
+									if user.canAccessKeystone
+										li: a(href='/keystone') Open Keystone
+									li: a(href='/signout') Sign Out
+			else
+				div(role="navigation").navbar.navbar-default
+					.container
+						.navbar-header
+							button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+								span.sr-only Toggle navigation
+								span.icon-bar
+								span.icon-bar
+								span.icon-bar
+							a.navbar-brand(href='/') Guitar Shop
+						.collapse.navbar-collapse
+							ul.nav.navbar-nav.navbar-right
+								each link in navLinks
+									li(class=(section == link.key ? 'active' : null) style=(user && link.helper ? 'display:none' : '')): a(href=link.href)= link.label
+								if user
+									if user.canAccessKeystone
+										li: a(href='/keystone') Open Keystone
+									li: a(href='/signout') Sign Out
 
 		//- BODY
 		#body
@@ -79,10 +98,11 @@ html
 
 
 		//- FOOTER
-		.container: #footer
+		if section!= 'home'
+			.container: #footer
 
-			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
-			p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
+				//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
+				p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
 
 
 		//- JAVASCRIPT

@@ -16,7 +16,7 @@ exports = module.exports = function(req, res) {
 	var brand = req.query.brand ? req.query.brand : null
 	var pageOps = {
 		page: req.query.page || 1,
-		perPage: 1,
+		perPage: 9,
 		filters: brand ? { 'brand': brand } : null
 	}
 

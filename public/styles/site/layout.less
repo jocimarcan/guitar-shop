@@ -5,6 +5,51 @@
 	color: #777777;
 }
 
+.navbar-home {
+	z-index: 10;
+	background: #fff;
+}
+
+@media (min-width: 768px) {
+	.navbar-home {
+		z-index: 10;
+		border-radius: 0;
+		background: transparent;
+		border: none;
+		.navbar-header .navbar-brand {
+			display: none;
+		}
+		.navbar-collapse li {
+			margin: 0 5px;
+		}
+		.navbar-collapse li a{
+			color: #fafafa;
+			font-size: 18px;
+			transition: all 0.35s;
+			display: inline-block;
+			overflow: hidden;
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 100%;
+				background: transparent;
+				border-bottom: 1px solid white;
+				transition: all 0.35s;
+			}
+			&:hover:before {
+				left: 0;
+			}
+			&:hover {
+				color: #f0f0f0;
+				transform: scale(1.1);
+			}
+		}
+	}
+}
+
 .gallery-image img {
     display: block;
     max-width: 100%;
