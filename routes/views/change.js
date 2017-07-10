@@ -28,8 +28,8 @@ exports = module.exports = function(req, res) {
 						domain: process.env.MAILGUN_DOMAIN,
 						to: process.env.RECIPIENT,
 						from: {
-							name: 'Guitar Market',
-							email: 'contact@guitarmarket.com'
+							name: 'Guitar Shop',
+							email: 'contact@guitarshop.com'
 						},
 						subject: 'Your password has been restored'
 					}, function(err, result) {

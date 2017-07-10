@@ -37,10 +37,10 @@ exports = module.exports = function(req, res) {
 						domain: process.env.MAILGUN_DOMAIN,
 						to: process.env.RECIPIENT,
 						from: {
-							name: 'Guitar Market',
-							email: 'contact@guitarmarket.com'
+							name: 'Guitar Shop',
+							email: 'contact@guitarshop.com'
 						},
-						subject: 'Welcome to Guitar Market'
+						subject: 'Welcome to Guitar Shop'
 					}, function(err, result) {
 						if (err) {
 							console.error('🤕 Mailgun test failed with error:\n', err);
