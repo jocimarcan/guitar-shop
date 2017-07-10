@@ -26,7 +26,7 @@ exports = module.exports = function(req, res) {
 					.send({ name: user.name.first, email: req.body.email, password: req.body.password },{
 						apiKey: process.env.MAILGUN_API_KEY,
 						domain: process.env.MAILGUN_DOMAIN,
-						to: process.env.RECIPIENT,
+						to: process.env.RECIPIENT || req.body.email,
 						from: {
 							name: 'Guitar Shop',
 							email: 'contact@guitarshop.com'
